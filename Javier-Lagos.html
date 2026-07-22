@@ -302,6 +302,7 @@ const DATOS = {
   whatsapp: "56972961534",               // solo dígitos, con código de país
   email: "jjlagos@miaundes.cl",
   linkedin: "https://www.linkedin.com/in/javier-lagos-lagos-743686189/",
+  vcf: "Javier-Lagos.vcf",             // archivo .vcf subido junto a esta tarjeta (para iPhone)
 };
 /* ============================================ */
 
@@ -362,29 +363,24 @@ function confirmarBoton(texto){
   }, 2600);
 }
 
-async function guardarContacto(){
-  const vcf = construirVcf();
-  const nombreArchivo = DATOS.nombre.replace(/\s+/g,'_') + '_AIC.vcf';
-  const archivo = new File([vcf], nombreArchivo, {type:'text/vcard'});
-  const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+function guardarContacto(){
+  const esIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const publicada = location.protocol === 'http:' || location.protocol === 'https:';
 
-  // En móviles: abrir la hoja nativa del sistema (Contactos aparece como destino directo)
-  if (esMovil && navigator.canShare && navigator.canShare({files:[archivo]})) {
-    try {
-      await navigator.share({files:[archivo], title: DATOS.nombre});
-      confirmarBoton('Listo');
-      return;
-    } catch(e) {
-      if (e.name === 'AbortError') return; // el usuario cerró la hoja: no hacer nada
-      // otro error: continuar con la descarga clásica
-    }
+  // iPhone/iPad con tarjeta publicada: abrir el .vcf del sitio —
+  // Safari muestra la ficha con "Crear nuevo contacto" directamente
+  if (esIOS && publicada && DATOS.vcf) {
+    location.href = DATOS.vcf;
+    confirmarBoton('Listo');
+    return;
   }
 
-  // Computadores (o móviles sin soporte): descarga del .vcf
+  // Android y computadores: descarga del .vcf (Android abre Contactos al tocarlo)
+  const vcf = construirVcf();
   const blob = new Blob([vcf], {type:'text/vcard;charset=utf-8'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = nombreArchivo;
+  a.download = DATOS.nombre.replace(/\s+/g,'_') + '_AIC.vcf';
   a.click();
   confirmarBoton('Contacto descargado');
 }
