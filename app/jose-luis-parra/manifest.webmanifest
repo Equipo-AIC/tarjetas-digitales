@@ -1,0 +1,53 @@
+{
+  "id": "/tarjetas-digitales/app/jose-luis-parra/",
+  "name": "Tarjeta AIC — Jose Luis Parra",
+  "short_name": "Tarjeta AIC",
+  "description": "Mi tarjeta digital AIC: mostrar mi QR o mis datos de contacto.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#01163A",
+  "theme_color": "#01163A",
+  "icons": [
+    {
+      "src": "../img/icono-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "../img/icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "../img/icono-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mostrar mi QR",
+      "url": "./#qr",
+      "icons": [
+        {
+          "src": "../img/icono-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Mostrar mis datos",
+      "url": "./#datos",
+      "icons": [
+        {
+          "src": "../img/icono-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
