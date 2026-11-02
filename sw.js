@@ -2,9 +2,9 @@
    Solo lo registran quienes abren la app (carpeta /app/). Quien escanea un QR
    no lo instala. Estrategia: red primero (siempre la versión más reciente) y,
    si no hay señal, la última copia guardada. Así el QR funciona sin internet. */
-const CACHE = 'tarjeta-aic-v1';
+const CACHE = 'tarjeta-aic-v2';
 const BASE = [
-  'app/app.css', 'app/app.js', 'app/personas.js', 'app/vendor/qrcode.min.js',
+  'app/app.css', 'app/app.js', 'app/vendor/qrcode.min.js',
   'app/img/logo-aic-blanco.png', 'app/img/icono-192.png', 'app/img/icono-512.png',
   'app/img/apple-touch-icon.png'
 ];
@@ -40,7 +40,9 @@ self.addEventListener('fetch', e => {
     let listo = false;
     const desdeCache = () => caches.match(req, { ignoreSearch: true });
     const t = setTimeout(() => desdeCache().then(r => { if (r && !listo) { listo = true; resolve(r); } }), 4000);
-    fetch(req).then(res => {
+    // Pide siempre al servidor la versión vigente (sin usar la copia temporal del navegador)
+    const pedido = req.mode === 'navigate' ? req : new Request(req, { cache: 'no-cache' });
+    fetch(pedido).then(res => {
       if (res.ok) { const copia = res.clone(); caches.open(CACHE).then(c => c.put(req, copia)); }
       if (!listo) { listo = true; clearTimeout(t); resolve(res); }
     }).catch(() => desdeCache().then(r => {
