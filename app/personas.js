@@ -16,5 +16,9 @@ window.PERSONAS = {
   "jose-luis-parra": {
     tarjeta: "Jose-Luis-Parra.html",
     qr: "https://equipo-aic.github.io/tarjetas-digitales/Jose-Luis-Parra"
+  },
+  "carolina-fuenzalida": {
+    tarjeta: "Carolina-Fuenzalida.html",
+    qr: "https://equipo-aic.github.io/tarjetas-digitales/Carolina-Fuenzalida.html"
   }
 };

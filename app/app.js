@@ -29,6 +29,7 @@
         <div class="opciones">
           <a class="btn-app btn-qr" href="#qr">${ICONO.qr}Mostrar mi QR</a>
           <a class="btn-app btn-datos" href="#datos">${ICONO.datos}Mostrar mis datos</a>
+          <button class="btn-app btn-datos" id="compartir" type="button">${ICONO.compartir}<span>Compartir mi tarjeta</span></button>
         </div>
         <div class="instalar" id="instalar"></div>
         <div class="pie"></div>
@@ -52,6 +53,7 @@
   const marco = $('#marco');
   const urlTarjeta = new URL(raiz + p.tarjeta, location.href).href;
   let datosListos = false;
+  let persona = { nombre: '', cargo: '' };
   marco.addEventListener('load', () => {
     if (datosListos) return;
     try {
@@ -70,6 +72,7 @@
       });
       document.querySelectorAll('.foto-iniciales').forEach(e => e.textContent = iniciales);
       document.title = nombre + ' — Tarjeta AIC';
+      persona = { nombre, cargo };
       datosListos = true;
       mostrar();
     } catch (e) {
@@ -82,6 +85,21 @@
   new QRCode($('#qr'), {
     text: p.qr, width: 1024, height: 1024,
     colorDark: '#01163A', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H
+  });
+
+  // ---- Compartir: envía el mismo enlace del QR (la tarjeta con datos) ----
+  $('#compartir').addEventListener('click', async () => {
+    const url = p.qr;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: persona.nombre + ' — AIC', text: 'Mi tarjeta digital AIC: ' + persona.nombre, url });
+      } catch (e) { /* el usuario cerró el menú */ }
+      return;
+    }
+    const etiqueta = $('#compartir span');
+    try { await navigator.clipboard.writeText(url); etiqueta.textContent = 'Enlace copiado'; }
+    catch (e) { prompt('Copia este enlace:', url); }
+    setTimeout(() => { etiqueta.textContent = 'Compartir mi tarjeta'; }, 2500);
   });
 
   // ---- Navegación (#qr, #datos) ----

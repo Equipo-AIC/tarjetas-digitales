@@ -18,6 +18,7 @@ La app no duplica datos: nombre, cargo y foto se leen de la tarjeta de cada pers
 
 - Javier Lagos: https://equipo-aic.github.io/tarjetas-digitales/app/javier-lagos/
 - Jose Luis Parra: https://equipo-aic.github.io/tarjetas-digitales/app/jose-luis-parra/
+- Carolina Fuenzalida: https://equipo-aic.github.io/tarjetas-digitales/app/carolina-fuenzalida/
 
 ## Agregar a una persona
 
