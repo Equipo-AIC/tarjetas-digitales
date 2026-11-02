@@ -87,6 +87,7 @@ body::before{
   font-size:13px;line-height:1.5;color:var(--gris-texto);text-align:center;display:none}
 .instalar.visible{display:block}
 .instalar b{color:var(--azul)}
+.instalar small{display:block;margin-top:6px;font-size:12px}
 .instalar svg{width:16px;height:16px;vertical-align:-3px;fill:var(--azul-medio)}
 .btn-instalar{margin-top:10px;min-height:46px;font-size:14.5px;background:var(--azul);color:var(--blanco);border:none}
 .pie{height:18px}

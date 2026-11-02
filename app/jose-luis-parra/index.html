@@ -17,9 +17,14 @@
 <link rel="stylesheet" href="../app.css">
 </head>
 <body>
-<!-- Única línea propia de cada persona: debe coincidir con app/personas.js -->
-<script>window.PERSONA = "jose-luis-parra";</script>
-<script src="../personas.js"></script>
+<!-- Datos de esta persona. "qr" es el enlace exacto del QR ya distribuido: no cambiarlo. -->
+<script>
+  window.PERSONA = "jose-luis-parra";
+  window.PERSONAS = { "jose-luis-parra": {
+    tarjeta: "Jose-Luis-Parra.html",
+    qr: "https://equipo-aic.github.io/tarjetas-digitales/Jose-Luis-Parra"
+  } };
+</script>
 <script src="../vendor/qrcode.min.js"></script>
 <script src="../app.js"></script>
 </body>

@@ -156,7 +156,10 @@
   let aviso = null;
   if (!instalada) {
     if (esIOS) {
-      caja.innerHTML = `<b>Instala la app en tu iPhone:</b><br>toca ${ICONO.compartir} <b>Compartir</b> y luego <b>“Agregar a inicio”</b>.`;
+      caja.innerHTML = `<b>Instala la app en tu iPhone (desde Safari):</b><br>`
+        + `1. Toca <b>···</b> junto a la barra de dirección (o ${ICONO.compartir} en la barra de Safari).<br>`
+        + `2. Toca <b>Compartir</b> y baja hasta <b>“Agregar a pantalla de inicio”</b> (si no aparece, toca <b>Ver más</b>).<br>`
+        + `<small>Usa el Compartir de Safari, no el botón “Compartir mi tarjeta”.</small>`;
       caja.classList.add('visible');
     } else if (esAndroid) {
       caja.innerHTML = `<b>Instala la app en tu teléfono:</b><br>abre el menú ${ICONO.menu} del navegador y elige <b>“Instalar app”</b> o <b>“Agregar a pantalla principal”</b>.`;
