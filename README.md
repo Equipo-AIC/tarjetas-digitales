@@ -20,6 +20,7 @@ La app no duplica datos: nombre, cargo y foto se leen de la tarjeta de cada pers
 - Carolina Fuenzalida: https://equipo-aic.github.io/tarjetas-digitales/app/carolina-fuenzalida/
 - Addirianni Urdaneta: https://equipo-aic.github.io/tarjetas-digitales/app/addirianni-urdaneta/
 - Martina Silva: https://equipo-aic.github.io/tarjetas-digitales/app/martina-silva/
+- Madina Ortiz: https://equipo-aic.github.io/tarjetas-digitales/app/madina-ortiz/
 
 ## Agregar a una persona
 
